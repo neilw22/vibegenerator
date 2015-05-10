@@ -1,0 +1,26 @@
+
+.masthead {
+	height: 4em;
+	text-align: center;
+	border: 1px solid;
+	padding: 1em;
+}
+
+.player { 
+	width: 50%;
+	height: auto;
+	border: 1px solid;
+	background-color: lightgray;
+	margin: 10em auto;
+	padding: 2em;
+}
+
+#tags {
+	margin: auto;
+	display: block;
+}
+
+button {
+	display: block;
+	margin: auto;
+}
