@@ -5,9 +5,13 @@ $(document).ready(function(){
 //  	});
 
 
-$('#play').click(function(event) {
+$('.player').submit(function(event) {
 	event.preventDefault();
 	var userTags = $('#tags').val();
+
+	soundManager.stop('mySound');
+	soundManager.destroySound('mySound');
+
 	getRequest(userTags);
 	randImage();
 
@@ -39,6 +43,8 @@ function getRequest(searchTerm){
 			});	
 			console.log(songList[randNumb]);
 			playSound(songList[randNumb]);
+
+
 		});
 	}
 
@@ -49,7 +55,7 @@ function playSound(streamId){
   		autoLoad: true,
   		autoPlay: true,
   		volume: 50,
-  		onfinish: playNextSound
+  		onfinish: playSound
 		});
 	}
 
@@ -59,7 +65,7 @@ function playNextSound(){
 
 function randImage() {
 	$.getJSON("http://www.splashbase.co/api/v1/images/random", "images_only=true", function(data){
-		$('body').css('background-image', 'url(' + data.url + ')');
+		$('html').css('background-image', 'url(' + data.url + ')');
 		console.log(data.url);
 	})
 }

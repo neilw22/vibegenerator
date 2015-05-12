@@ -1,6 +1,11 @@
-body {
+html {
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
 	background-size: cover;
 	background-repeat: no-repeat;
+	background-position: center center;
+	background-attachment: fixed;
 }
 
 .masthead {
@@ -17,14 +22,18 @@ body {
 	background-color: lightgray;
 	margin: 10em auto;
 	padding: 2em;
-}
+/*	opacity: 0.3;
+*/}
 
 #tags {
 	margin: auto;
 	display: block;
+	opacity: 1;
+	z-index: 99999;
 }
 
 button {
 	display: block;
 	margin: auto;
+	z-index: 99999;
 }
