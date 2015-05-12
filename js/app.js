@@ -22,22 +22,53 @@ $('#play').click(function(event) {
 });
 
 $('#next-track').click(function(event){
+	var userTags = $('#tags').val();
+	getRequest(userTags);
 
-	$.getJSON("https://api.soundcloud.com/tracks.json?client_id=2dd7525162f8961f25c2b860f3fa3e25", function(data){
-		  	console.log(data[0].id);
-		  	var newTrack = (data[0].stream_url);
+	// $.getJSON("https://api.soundcloud.com/tracks.json?client_id=2dd7525162f8961f25c2b860f3fa3e25", function(data){
+	// 		$.each(data, function(i, tags){
+	// 			console.log(tags.tag_list);
+	// 		});
+		  	// console.log(data[9].tag_list);
+		  	// var newTrack = (data[0].stream_url);
+		// soundManager.createSound({
+  // 		id: 'mySound',
+  // 		url: newTrack + ".json?client_id=2dd7525162f8961f25c2b860f3fa3e25",
+  // 		autoLoad: true,
+  // 		autoPlay: true,
+  // 		volume: 50
+		// });
+	// });
+
+});
+
+
+
+
+});
+
+function getRequest(searchTerm){
+
+	var params = {
+		client_id: '2dd7525162f8961f25c2b860f3fa3e25',
+		tags: searchTerm,
+	};
+	url = "https://api.soundcloud.com/tracks.json?";
+	$.getJSON(url, params, function(data){
+			$.each(data, function(i, songId){
+				console.log(songId.stream_url);
+				playSound(songId.stream_url);
+			});	
+		});
+	}
+
+function playSound(streamId){
 		soundManager.createSound({
   		id: 'mySound',
-  		url: newTrack + ".json?client_id=2dd7525162f8961f25c2b860f3fa3e25",
+  		url: streamId + ".json?client_id=2dd7525162f8961f25c2b860f3fa3e25",
   		autoLoad: true,
   		autoPlay: true,
   		volume: 50
 		});
-	});
-
-});
-
-
-
-
-});
+		console.log(streamId);
+	}
