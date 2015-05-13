@@ -1,11 +1,6 @@
 $(document).ready(function(){
 
-// SC.initialize({
-//     client_id: "2dd7525162f8961f25c2b860f3fa3e25"
-//  	});
-
-
-$('.player').submit(function(event) {
+$('.player-input').submit(function(event) {
 	event.preventDefault();
 	var userTags = $('#tags').val();
 
@@ -15,58 +10,69 @@ $('.player').submit(function(event) {
 	getRequest(userTags);
 	randImage();
 
-	
 });
 
 $('#next-track').click(function(event){
+	event.preventDefault();
 	soundManager.stop('mySound');
 	soundManager.destroySound('mySound');
+	playNextSound();
+});
 
 });
 
 
 
-
-});
+var songList = new Array();
 
 function getRequest(searchTerm){
-	var songList = new Array();
-	var randNumb = Math.floor((Math.random() * 49) + 1);
+	songList = [];
+	var randNumb = Math.floor((Math.random() * 199) + 1);
 	var params = {
 		client_id: '2dd7525162f8961f25c2b860f3fa3e25',
 		genres: searchTerm,
+		limit: 250
 	};
 	url = "https://api.soundcloud.com/tracks.json?";
 	$.getJSON(url, params, function(data){
+		
 			$.each(data, function(i, songId){
-				songList.push(songId.stream_url);
+				if (songId.streamable == true) {
+					songList.push(songId.stream_url);
+				}
+				// console.log(songId.title);
 			});	
-			console.log(songList[randNumb]);
+			randNumb = Math.floor((Math.random() * (songList.length - 1 )) + 1);
 			playSound(songList[randNumb]);
-
+			console.log(randNumb);
 
 		});
+			
+
 	}
 
 function playSound(streamId){
+		soundManager.destroySound('mySound');
 		soundManager.createSound({
   		id: 'mySound',
   		url: streamId + ".json?client_id=2dd7525162f8961f25c2b860f3fa3e25",
   		autoLoad: true,
   		autoPlay: true,
   		volume: 50,
-  		onfinish: playSound
+  		onfinish: playNextSound
 		});
 	}
 
 function playNextSound(){
+	var randNumb = Math.floor((Math.random() * (songList.length - 1 )) + 1);
 	playSound(songList[randNumb]);
+	randImage();
+	console.log(randNumb);
 }
 
 function randImage() {
 	$.getJSON("http://www.splashbase.co/api/v1/images/random", "images_only=true", function(data){
 		$('html').css('background-image', 'url(' + data.url + ')');
-		console.log(data.url);
 	})
 }
 
