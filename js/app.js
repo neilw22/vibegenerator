@@ -8,6 +8,7 @@ $('.player-input').submit(function(event) {
 	soundManager.destroySound('mySound');
 
 	getRequest(userTags);
+	$('.player').addClass('faded');
 
 });
 

@@ -1,4 +1,5 @@
 html {
+	background-image: url("../dark_wood/dark_wood.png");
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -6,25 +7,53 @@ html {
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-attachment: fixed;
-	transition: background 3s;
+	transition: background 2s;
 	transition-timing-function: linear;
-	transition-delay: 4s;
+	transition-delay: 2s;
+}
+
+body {
+	color: white;
+}
+
+h1 {
+	font-family: 'Megrim', cursive;
+	font-size: 3em;
+}
+
+h2 {
+	font-family: 'Megrim', cursive;
+	font-size: 1.2em;
 }
 
 .masthead {
 	height: 4em;
 	text-align: center;
 	padding: 1em;
-}
+	transition: background 0.5s;
+	}
+.masthead:hover{
+	background-color: darkgrey;
+	opacity: 0.4;
+	transition: background 0.5s;
+	}
 
 .player { 
-	width: 50%;
+	width: 25%;
 	height: auto;
-	border: 1px solid;
-/*	background-color: lightgray;
-*/	margin: 10em auto;
+	margin: 10em auto;
 	padding: 2em;
+	transition: opacity 0.5s;
 	}
+
+.faded {
+	opacity: 0.2;
+}
+
+.player:hover {
+	opacity: 1;
+	transition: opacity 0.5s;
+}
 
 #tags {
 	width: 15em;
@@ -35,6 +64,7 @@ html {
 }
 
 button {
+	font-family: 'Fira Mono';
 	display: block;
 	margin: auto;
 	z-index: 99999;
