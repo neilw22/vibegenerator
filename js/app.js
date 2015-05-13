@@ -8,7 +8,6 @@ $('.player-input').submit(function(event) {
 	soundManager.destroySound('mySound');
 
 	getRequest(userTags);
-	randImage();
 
 });
 
@@ -25,7 +24,7 @@ $('#next-track').click(function(event){
 
 var songList = new Array();
 
-function getRequest(searchTerm){
+function getRequest(searchTerm) {
 	songList = [];
 	var randNumb = Math.floor((Math.random() * 199) + 1);
 	var params = {
@@ -40,15 +39,16 @@ function getRequest(searchTerm){
 				if (songId.streamable == true) {
 					songList.push(songId.stream_url);
 				}
-				// console.log(songId.title);
-			});	
+			});
+			if (songList == 0) {
+				alert("Sorry we couldn't find that vibe, try another style");
+				$('#tags').val('');
+			} else {
 			randNumb = Math.floor((Math.random() * (songList.length - 1 )) + 1);
 			playSound(songList[randNumb]);
 			console.log(randNumb);
-
+			}
 		});
-			
-
 	}
 
 function playSound(streamId){
@@ -61,13 +61,13 @@ function playSound(streamId){
   		volume: 50,
   		onfinish: playNextSound
 		});
+		randImage();
 	}
 
 function playNextSound(){
 	var randNumb = Math.floor((Math.random() * (songList.length - 1 )) + 1);
 	playSound(songList[randNumb]);
-	randImage();
-	console.log(randNumb);
+	// console.log(randNumb);
 }
 
 function randImage() {
@@ -75,4 +75,3 @@ function randImage() {
 		$('html').css('background-image', 'url(' + data.url + ')');
 	})
 }
-
