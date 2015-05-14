@@ -1,5 +1,5 @@
 html {
-	background-image: url("../dark_wood/dark_wood.png");
+	background-image: url("../images/dark_wood.png");
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -8,7 +8,7 @@ html {
 	background-position: center center;
 	background-attachment: fixed;
 	transition: background 2s;
-	transition-timing-function: linear;
+	transition-timing-function: ease-out;
 	transition-delay: 2s;
 }
 
@@ -27,21 +27,26 @@ h2 {
 }
 
 .masthead {
-	height: 4em;
+	width: auto;
+	border-radius: 10px;
+	height: auto;
+/*	margin-top: 1em;
+*/	margin: 0.5em;
 	text-align: center;
 	padding: 1em;
-	transition: background 0.5s;
 	}
 .masthead:hover{
-	background-color: darkgrey;
-	opacity: 0.4;
+	background-color: black;
+	text-shadow: 0px 0px 80px whitesmoke;
+/*	background-color: darkgrey;
+*/	/*opacity: 0.4;*/
 	transition: background 0.5s;
 	}
 
 .player { 
 	width: 25%;
 	height: auto;
-	margin: 10em auto;
+	margin: 8em auto;
 	padding: 2em;
 	transition: opacity 0.5s;
 	}
@@ -56,16 +61,63 @@ h2 {
 }
 
 #tags {
-	width: 15em;
+	font-family: 'Fira Mono';
+	font-size: 0.77em;
+	padding: 0.8em;
+	width: 90%;
+	border: none;
+	border-radius: 10px;
 	margin: auto;
 	display: block;
 	opacity: 1;
-	z-index: 99999;
+}
+
+.track-info {
+	width: auto;
+	float: left;
+	margin-left: 1em;
+	border-radius: 10px;
+	padding: 0.6em;
+	font-family: 'Megrim';
+	font-size: 1.75em;
+	opacity: 0.3;
+	transition: background 0.5s;
+}
+
+.track-info:hover {
+	opacity: 1;
+	background-color: black;
+	transition: background 0.5s;
+}
+
+.hidden {
+	display: none;
+	position: fixed;
+	background-color: black;
+	width: 25%;
+	height: auto;
+	/*margin: auto;*/
+	/*padding: 1em;*/
+	text-align: center;
+}
+
+.hidden-content {
+	padding: 1em;
+	font-family: 'Fira Mono';
+	font-size: 1.1em;
+}
+
+#hidden-close {
+	margin-top: 1em;
 }
 
 button {
 	font-family: 'Fira Mono';
+	font-size: 1em;
 	display: block;
 	margin: auto;
-	z-index: 99999;
+	border: none;
+	border-radius: 10px;
+	background-color: whitesmoke;
+	padding: 0.35em 1em;
 }

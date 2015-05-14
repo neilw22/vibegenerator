@@ -10,23 +10,35 @@ $('.player-input').submit(function(event) {
 	getRequest(userTags);
 	$('.player').addClass('faded');
 
-});
+	});
 
 $('#next-track').click(function(event){
 	event.preventDefault();
 	soundManager.stop('mySound');
 	soundManager.destroySound('mySound');
 	playNextSound();
-});
+	});
+
+$('body').keyup(function(event) {
+	if (event.which == 9) {
+		playNextSound();
+	}
+	});
+$('#hidden-close').click(function(){
+	$('.hidden').fadeOut();
+	});
 
 });
-
-
 
 var songList = new Array();
+var userList = new Array();
+var titleList = new Array();
+
 
 function getRequest(searchTerm) {
 	songList = [];
+	userList = [];
+	titleList = [];
 	var randNumb = Math.floor((Math.random() * 199) + 1);
 	var params = {
 		client_id: '2dd7525162f8961f25c2b860f3fa3e25',
@@ -39,15 +51,18 @@ function getRequest(searchTerm) {
 			$.each(data, function(i, songId){
 				if (songId.streamable == true) {
 					songList.push(songId.stream_url);
+					userList.push(songId.user);
+					titleList.push(songId.title);
 				}
 			});
 			if (songList == 0) {
-				alert("Sorry we couldn't find that vibe, try another style");
+				$('.hidden').fadeIn();
 				$('#tags').val('');
 			} else {
 			randNumb = Math.floor((Math.random() * (songList.length - 1 )) + 1);
 			playSound(songList[randNumb]);
-			console.log(randNumb);
+			$('.track-info').text(userList[randNumb] + " - ");
+			$('.track-info').text(titleList[randNumb]);
 			}
 		});
 	}
@@ -68,7 +83,8 @@ function playSound(streamId){
 function playNextSound(){
 	var randNumb = Math.floor((Math.random() * (songList.length - 1 )) + 1);
 	playSound(songList[randNumb]);
-	// console.log(randNumb);
+	$('.track-info').text(userList[randNumb] + " - ");
+	$('.track-info').text(titleList[randNumb]);
 }
 
 function randImage() {

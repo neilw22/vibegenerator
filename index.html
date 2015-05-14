@@ -5,8 +5,8 @@
 	<link rel="stylesheet" href="css/reset.css">
 	<link rel="stylesheet" href="css/stylesheet.css">
 	<link href='http://fonts.googleapis.com/css?family=Fira+Mono|Megrim' rel='stylesheet' type='text/css'>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<script src="http://connect.soundcloud.com/sdk.js"></script>
 	<script src="js/soundmanager2.js"></script>
 	<script src="js/app.js"></script>
 	<title>Vibe-Generator</title>
@@ -14,16 +14,23 @@
 <body>
 	<header class="masthead">
 		<h1>Vibe-Generator</h1><br>
-		<h2>powered by Soundcloud</h2>
+		<h2>powered by Soundcloud and Splashbase</h2>
 	</header>
 		<div class="content">
+
 			<div class="player">
+			<div class="hidden">
+				<div class="hidden-content">Sorry we couldn't find that vibe... Try another style?<br>
+						<button id="hidden-close">Close</button>
+				</div>
+			</div>
 				<form class="player-input">
 					<input type="text" id="tags" placeholder="What Would You Like to Hear?" required></i><br>
 					<button id="play">Play</button><br>
-				</form>
+				</form>	
 					<button id="next-track">Next-Track</button><br>
-			</div>		
+			</div>
+				<div class="track-info">Push Tab for "Next-TracK"</div>
 		</div>
 </body>
 </html>
