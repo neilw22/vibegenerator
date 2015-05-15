@@ -120,4 +120,32 @@ button {
 	border-radius: 10px;
 	background-color: whitesmoke;
 	padding: 0.35em 1em;
-}
+	transition: background 0.5s;
+
+	}
+
+button:hover { 
+	background-color: black;
+	color: whitesmoke;
+	transition: 0.5s;
+	}
+
+/*#play:hover button{
+	background-image: url('../images/button_play.png');
+	}*/
+	
+@media screen and (max-width: 915px) {
+	.player {
+		width: 40%;
+		margin: 5em auto;
+		padding: 1.5em;
+		}	
+	}
+
+@media screen and (max-width: 590px) {
+	.player {
+		width: 70%;
+		margin: 2em auto;
+		padding: 1em;
+		}	
+	}

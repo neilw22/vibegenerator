@@ -11,6 +11,10 @@ $('.player-input').submit(function(event) {
 	$('.player').addClass('faded');
 
 	});
+$('#pause').click(function(event){
+	event.preventDefault();
+	soundManager.togglePause('mySound');
+	});
 
 $('#next-track').click(function(event){
 	event.preventDefault();
@@ -24,6 +28,13 @@ $('body').keyup(function(event) {
 		playNextSound();
 	}
 	});
+
+$('body').keyup(function(event) {
+	if (event.which == 80) {
+		soundManager.togglePause('mySound');
+	}
+	});
+
 $('#hidden-close').click(function(){
 	$('.hidden').fadeOut();
 	});
